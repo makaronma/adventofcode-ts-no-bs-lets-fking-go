@@ -12,15 +12,51 @@ export const chopBy = (arr: string[], seperator: string): string[][] =>
     return [...prev.slice(0, -1), [...prev[prev.length - 1], el]];
   }, []);
 
+export const chopAndMutate = <TData,VOutput>(
+  arr: TData[],
+  seperator: TData,
+  incrementer: (prevSum: VOutput, curr: TData) => VOutput,
+  dataTypeTransformer: (data:TData)=>VOutput
+): VOutput[] => {
+  console.time('chopAndMutate');
+
+  let result: VOutput[] = [];
+  let lastSeperatorIndex: number | undefined = undefined;
+  
+  arr.forEach((el, i) => {
+    if (i === 0) {
+      result = [dataTypeTransformer(el)];
+      return;
+    }
+    if (el === seperator) {
+      lastSeperatorIndex = i;
+      return;
+    }
+
+    if (i - 1 === lastSeperatorIndex) {
+      result = [...result, dataTypeTransformer(el)];
+      return;
+    }
+    result[result.length - 1] = incrementer(result[result.length - 1], el);
+    return;
+  });
+
+  console.timeEnd('chopAndMutate');
+
+  return result;
+};
+
 /**
  * @description Get number of largest values in an array
  * @example getTopsOfNums([1, 5, 7, 3, 35, 5, 10, 12], 3)
  * -> [ 35, 10, 12 ]
  */
-export const getTopsOfNums = (arr: number[], numOfTops: number): number[] =>
-  arr.reduce<number[]>((prev, curr) => {
+export const getTopsOfNums = (arr: number[], numOfTops: number): number[] =>{
+  console.time("getTopsOfNums");
+  
+  const result =  arr.reduce<number[]>((prev, curr) => {
     if (prev.length === 0) return [curr];
-
+    
     const isLargerThanSomeVal = prev.some((val) => val < curr);
     if (isLargerThanSomeVal) {
       if (prev.length >= numOfTops) {
@@ -31,3 +67,8 @@ export const getTopsOfNums = (arr: number[], numOfTops: number): number[] =>
     }
     return prev;
   }, []);
+  
+  console.timeEnd("getTopsOfNums");
+
+  return result
+}

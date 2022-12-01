@@ -5,7 +5,7 @@ import { chopBy, getTopsOfNums } from "./utils";
 
 export default () =>
   {
-    const startTimeInMs = new Date().getTime();
+    console.time("day1")
     fs.readFile("day1.txt", "utf8", (err, data) => {
       if (err) throw err;
 
@@ -20,8 +20,6 @@ export default () =>
       const top3 = getTopsOfNums(maxs, 3).reduce((a, b) => a + b, 0);
       console.log({ top3 });
 
-      const endTimeInMs = new Date().getTime();
-      const durationInMs = endTimeInMs - startTimeInMs;
-      console.log({ durationInMs });
+      console.timeEnd("day1")
     });
   }

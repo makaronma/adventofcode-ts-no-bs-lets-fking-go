@@ -4,7 +4,7 @@ import { chopBy, getTopsOfNums } from "./utils";
 // https://adventofcode.com/2022/day/1
 
 export default () =>
-  fs.readFile("input.txt", "utf8", (err, data) => {
+  fs.readFile("day1.txt", "utf8", (err, data) => {
     if (err) throw err;
 
     const calories = data.toString().split("\n");

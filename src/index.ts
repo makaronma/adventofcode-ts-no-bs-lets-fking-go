@@ -1,4 +1,8 @@
-import { camelCase } from "lodash";
+import fs from 'fs'
 
+fs.readFile("input.txt", "utf8", (err, data) => {
+  if (err) throw err;
 
-console.log(camelCase('asd asd qwd -qd _D-s asd '));
+  const array = data.toString().split("\n");
+  console.log(array);
+});

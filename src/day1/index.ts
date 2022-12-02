@@ -1,5 +1,5 @@
 import fs from "fs";
-import { chopBy, chopAndMutate, getTopsOfNums } from "./utils";
+import { chopAndMutate, getTopsOfNums } from "../utils";
 
 export default () =>
   {

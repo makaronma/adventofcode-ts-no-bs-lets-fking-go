@@ -43,39 +43,69 @@ const getResultScore = (left: LEFT, right: RIGHT): number => {
   return 0.1;
 };
 
-export default () => {
-  // part1
-  getData(2, (data) => {
-    console.time("part1")
-    let sumScore = 0;
-    data.forEach((d) => {
-      const [left, right] = d.split(" ") as [LEFT, RIGHT];
-      const baseScore = getCharBaseScore(right);
-      const resultScore = getResultScore(left, right);
-      sumScore += baseScore + resultScore;
-    });
-    console.log({ part1: sumScore });
-    console.timeEnd("part1")
-  });
-  
-  // part2
-  getData(2, (data) => {
-    console.time("part2")
-    let sumScore = 0;
-    data.forEach((d) => {
-      const [left, right] = d.split(" ") as [LEFT, RIGHT];
-      if (right === "X") {
-        const newChar = getRequiredCharToLose(left);
-        sumScore += scorePair.lose + getCharBaseScore(newChar);
-      } else if (right === "Y") {
-        const newChar = getRequiredCharToDraw(left);
-        sumScore += scorePair.draw + getCharBaseScore(newChar);
-      } else if (right === "Z") {
-        const newChar = getRequiredCharToWin(left);
-        sumScore += scorePair.win + getCharBaseScore(newChar);
-      }
-    });
-    console.log({ part2: sumScore });
-    console.timeEnd("part2")
-  });
+export default {
+  part1: () =>
+    getData(2, (data) => {
+      console.time("part1");
+      let sumScore = 0;
+      data.forEach((d) => {
+        const [left, right] = d.split(" ") as [LEFT, RIGHT];
+        const baseScore = getCharBaseScore(right);
+        const resultScore = getResultScore(left, right);
+        sumScore += baseScore + resultScore;
+      });
+      console.log({ part1: sumScore });
+      console.timeEnd("part1");
+    }),
+
+  part2: () =>
+    getData(2, (data) => {
+      console.time("part2");
+      let sumScore = 0;
+      data.forEach((d) => {
+        const [left, right] = d.split(" ") as [LEFT, RIGHT];
+        if (right === "X") {
+          const newChar = getRequiredCharToLose(left);
+          sumScore += scorePair.lose + getCharBaseScore(newChar);
+        } else if (right === "Y") {
+          const newChar = getRequiredCharToDraw(left);
+          sumScore += scorePair.draw + getCharBaseScore(newChar);
+        } else if (right === "Z") {
+          const newChar = getRequiredCharToWin(left);
+          sumScore += scorePair.win + getCharBaseScore(newChar);
+        }
+      });
+      console.log({ part2: sumScore });
+      console.timeEnd("part2");
+    }),
+
+  combined: () =>
+    getData(2, (data) => {
+      // part1
+      console.time("combined");
+      let sumScorePart1 = 0;
+      let sumScorePart2 = 0;
+      data.forEach((d) => {
+        const [left, right] = d.split(" ") as [LEFT, RIGHT];
+        const baseScore = getCharBaseScore(right);
+        const resultScore = getResultScore(left, right);
+        sumScorePart1 += baseScore + resultScore;
+
+        // part2
+        if (right === "X") {
+          const newChar = getRequiredCharToLose(left);
+          sumScorePart2 += scorePair.lose + getCharBaseScore(newChar);
+        } else if (right === "Y") {
+          const newChar = getRequiredCharToDraw(left);
+          sumScorePart2 += scorePair.draw + getCharBaseScore(newChar);
+        } else if (right === "Z") {
+          const newChar = getRequiredCharToWin(left);
+          sumScorePart2 += scorePair.win + getCharBaseScore(newChar);
+        }
+      });
+
+      console.log({ part1: sumScorePart1 });
+      console.log({ part2: sumScorePart2 });
+      console.timeEnd("combined");
+    }),
 };

@@ -46,6 +46,7 @@ const getResultScore = (left: LEFT, right: RIGHT): number => {
 export default () => {
   // part1
   getData(2, (data) => {
+    console.time("part1")
     let sumScore = 0;
     data.forEach((d) => {
       const [left, right] = d.split(" ") as [LEFT, RIGHT];
@@ -54,10 +55,12 @@ export default () => {
       sumScore += baseScore + resultScore;
     });
     console.log({ part1: sumScore });
+    console.timeEnd("part1")
   });
-
+  
   // part2
   getData(2, (data) => {
+    console.time("part2")
     let sumScore = 0;
     data.forEach((d) => {
       const [left, right] = d.split(" ") as [LEFT, RIGHT];
@@ -73,5 +76,6 @@ export default () => {
       }
     });
     console.log({ part2: sumScore });
+    console.timeEnd("part2")
   });
 };

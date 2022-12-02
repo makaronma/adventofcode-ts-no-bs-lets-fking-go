@@ -1,3 +1,19 @@
+import fs from 'fs';
+
+export const getData = (dayNumber: number, callback: (arr: string[]) => void) =>
+  fs.readFile(`src/day${dayNumber}/input.txt`, "utf8", (err, data) => {
+    if (err) throw err;
+    const arr = data.toString().split("\n");
+    callback(arr);
+  });
+
+export const getExampleData = (dayNumber: number, callback: (arr: string[]) => void) =>
+  fs.readFile(`src/day${dayNumber}/input.example.txt`, "utf8", (err, data) => {
+    if (err) throw err;
+    const arr = data.toString().split("\n");
+    callback(arr);
+  });
+
 /**
  * @description Chop an Array of String by a seperator
  * @example chopBy(["a", "b", "ss", "c", "d"], "ss")
@@ -18,6 +34,8 @@ export const chopAndMutate = <TData,VOutput>(
   incrementer: (prevSum: VOutput, curr: TData) => VOutput,
   dataTypeTransformer: (data:TData)=>VOutput
 ): VOutput[] => {
+  console.time('chopAndMutate');
+
   let result: VOutput[] = [];
   let lastSeperatorIndex: number | undefined = undefined;
   
@@ -39,6 +57,8 @@ export const chopAndMutate = <TData,VOutput>(
     return;
   });
 
+  console.timeEnd('chopAndMutate');
+
   return result;
 };
 
@@ -48,6 +68,8 @@ export const chopAndMutate = <TData,VOutput>(
  * -> [ 35, 10, 12 ]
  */
 export const getTopsOfNums = (arr: number[], numOfTops: number): number[] =>{
+  console.time("getTopsOfNums");
+  
   const result =  arr.reduce<number[]>((prev, curr) => {
     if (prev.length === 0) return [curr];
     
@@ -61,6 +83,8 @@ export const getTopsOfNums = (arr: number[], numOfTops: number): number[] =>{
     }
     return prev;
   }, []);
+  
+  console.timeEnd("getTopsOfNums");
 
   return result
 }

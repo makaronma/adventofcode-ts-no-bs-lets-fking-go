@@ -18,8 +18,6 @@ export const chopAndMutate = <TData,VOutput>(
   incrementer: (prevSum: VOutput, curr: TData) => VOutput,
   dataTypeTransformer: (data:TData)=>VOutput
 ): VOutput[] => {
-  console.time('chopAndMutate');
-
   let result: VOutput[] = [];
   let lastSeperatorIndex: number | undefined = undefined;
   
@@ -41,8 +39,6 @@ export const chopAndMutate = <TData,VOutput>(
     return;
   });
 
-  console.timeEnd('chopAndMutate');
-
   return result;
 };
 
@@ -52,8 +48,6 @@ export const chopAndMutate = <TData,VOutput>(
  * -> [ 35, 10, 12 ]
  */
 export const getTopsOfNums = (arr: number[], numOfTops: number): number[] =>{
-  console.time("getTopsOfNums");
-  
   const result =  arr.reduce<number[]>((prev, curr) => {
     if (prev.length === 0) return [curr];
     
@@ -67,8 +61,6 @@ export const getTopsOfNums = (arr: number[], numOfTops: number): number[] =>{
     }
     return prev;
   }, []);
-  
-  console.timeEnd("getTopsOfNums");
 
   return result
 }

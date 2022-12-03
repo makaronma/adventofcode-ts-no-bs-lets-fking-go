@@ -46,23 +46,23 @@ const getResultScore = (left: LEFT, right: RIGHT): number => {
 export default {
   part1: () =>
     getData(2, (data) => {
-      console.time("part1");
+      console.time("=========part1=========");
       let sumScore = 0;
-      data.forEach((d) => {
+      for (const d of data) {
         const [left, right] = d.split(" ") as [LEFT, RIGHT];
         const baseScore = getCharBaseScore(right);
         const resultScore = getResultScore(left, right);
         sumScore += baseScore + resultScore;
-      });
+      }
       console.log({ part1: sumScore });
-      console.timeEnd("part1");
+      console.timeEnd("=========part1=========");
     }),
 
   part2: () =>
     getData(2, (data) => {
-      console.time("part2");
+      console.time("=========part2=========");
       let sumScore = 0;
-      data.forEach((d) => {
+      for (const d of data) {
         const [left, right] = d.split(" ") as [LEFT, RIGHT];
         if (right === "X") {
           const newChar = getRequiredCharToLose(left);
@@ -74,18 +74,18 @@ export default {
           const newChar = getRequiredCharToWin(left);
           sumScore += scorePair.win + getCharBaseScore(newChar);
         }
-      });
+      }
       console.log({ part2: sumScore });
-      console.timeEnd("part2");
+      console.timeEnd("=========part2=========");
     }),
 
   combined: () =>
     getData(2, (data) => {
       // part1
-      console.time("combined");
+      console.time("=========combined=========");
       let sumScorePart1 = 0;
       let sumScorePart2 = 0;
-      data.forEach((d) => {
+      for (const d of data) {
         const [left, right] = d.split(" ") as [LEFT, RIGHT];
         const baseScore = getCharBaseScore(right);
         const resultScore = getResultScore(left, right);
@@ -102,10 +102,10 @@ export default {
           const newChar = getRequiredCharToWin(left);
           sumScorePart2 += scorePair.win + getCharBaseScore(newChar);
         }
-      });
+      }
 
       console.log({ part1: sumScorePart1 });
       console.log({ part2: sumScorePart2 });
-      console.timeEnd("combined");
+      console.timeEnd("=========combined=========");
     }),
 };

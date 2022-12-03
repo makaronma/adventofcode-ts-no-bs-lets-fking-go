@@ -1,16 +1,23 @@
 import { chunk } from "lodash";
 import { getData, getExampleData } from "../utils";
-const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-const getCharScore = (char: string): number => alphabet.indexOf(char) + 1;
 
+const charToScore = (char: string): number => {
+  const charCode = char.charCodeAt(0);
+  if (charCode < "a".charCodeAt(0)) {
+    // it is upper case
+    return charCode - "A".charCodeAt(0) + 27;
+  }
 
-function getCommonCharsOfTwoString(s1:string, s2:string) {
+  return charCode - "a".charCodeAt(0) + 1;
+}
+
+const getCommonCharsOfTwoString = (s1: string, s2: string): string[] => {
   const chars: string[] = [];
   s1.split("").forEach((char) => {
     if (s2.includes(char)) chars.push(char);
   });
   return chars;
-}
+};
 
 
 export default {
@@ -26,7 +33,7 @@ export default {
 
         right.split("").forEach((char) => {
           if (left.includes(char)) {
-            score = getCharScore(char);
+            score = charToScore(char);
           }
         });
 
@@ -55,8 +62,7 @@ export default {
           commonCharsInGroup[1]
         ).find((c) => c !== ",");
         if (finalCommonChar) {
-          const thisGroupScore = getCharScore(finalCommonChar);
-          sumScore += thisGroupScore;
+          sumScore += charToScore(finalCommonChar);;
         }
       }
       console.log({ sumScore });

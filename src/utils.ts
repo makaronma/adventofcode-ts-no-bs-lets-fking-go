@@ -88,3 +88,6 @@ export const getTopsOfNums = (arr: number[], numOfTops: number): number[] =>{
 
   return result
 }
+
+export const isNumberHighest = (target: number, otherNumbers: number[]) =>
+  otherNumbers.reduce<boolean>((prev, num) => prev && num < target, true);

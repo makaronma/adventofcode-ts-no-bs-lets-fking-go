@@ -4,6 +4,7 @@ import day3 from "./day3";
 import day4 from "./day4";
 import day5 from "./day5";
 import day8 from "./day8";
+import day9, { findIndexForAToTouchB, isTouching } from "./day9";
 import { isNumberHighest } from "./utils";
 
 // day2.part1();
@@ -19,7 +20,8 @@ import { isNumberHighest } from "./utils";
 // day5.part1()
 // day5.part2()
 
-day8.part1()
-day8.part2()
+// day8.part1()
+// day8.part2()
 
-// console.log(isNumberHighest(3,[3,2]));
+// day9.part1()
+day9.part2()

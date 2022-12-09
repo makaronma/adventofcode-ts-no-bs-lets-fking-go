@@ -14,6 +14,13 @@ export const getExampleData = (dayNumber: number, callback: (arr: string[]) => v
     callback(arr);
   });
 
+export const getExampleData2 = (dayNumber: number, callback: (arr: string[]) => void) =>
+  fs.readFile(`src/day${dayNumber}/input.example2.txt`, "utf8", (err, data) => {
+    if (err) throw err;
+    const arr = data.toString().split("\n");
+    callback(arr);
+  });
+
 /**
  * @description Chop an Array of String by a seperator
  * @example chopBy(["a", "b", "ss", "c", "d"], "ss")

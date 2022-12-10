@@ -1,4 +1,7 @@
+import "./number.extensions";
+import "./string.extensions";
 import day1 from "./day1";
+import day10 from "./day10";
 import day2 from "./day2";
 import day3 from "./day3";
 import day4 from "./day4";
@@ -24,4 +27,11 @@ import { isNumberHighest } from "./utils";
 // day8.part2()
 
 // day9.part1()
-day9.part2()
+// day9.part2()
+
+// day10.part1()
+day10.part2()
+
+
+// const a ="123456789".chopEnd(2)
+// console.log(a);

@@ -9,6 +9,7 @@ import day5 from "./day5";
 import day8 from "./day8";
 import day9, { findIndexForAToTouchB, isTouching } from "./day9";
 import { isNumberHighest } from "./utils";
+import day11 from "./day11";
 
 // day2.part1();
 // day2.part2();
@@ -30,8 +31,7 @@ import { isNumberHighest } from "./utils";
 // day9.part2()
 
 // day10.part1()
-day10.part2()
+// day10.part2()
 
-
-// const a ="123456789".chopEnd(2)
-// console.log(a);
+// day11.part1()
+day11.part2()

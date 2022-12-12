@@ -10,6 +10,7 @@ import day8 from "./day8";
 import day9, { findIndexForAToTouchB, isTouching } from "./day9";
 import { isNumberHighest } from "./utils";
 import day11 from "./day11";
+import day12 from "./day12";
 
 // day2.part1();
 // day2.part2();
@@ -34,4 +35,7 @@ import day11 from "./day11";
 // day10.part2()
 
 // day11.part1()
-day11.part2()
+// day11.part2()
+
+day12.part1()
+// day12.part2()
